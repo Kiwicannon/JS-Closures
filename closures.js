@@ -14,11 +14,12 @@ var outer = function(){
 closure over the name variable. Invoke outer saving the return value into
 another variable called 'inner'. */
 
-// Code Here
+var inner = outer()
+
 
 //Once you do that, invoke inner.
 
-//Code Here
+inner()
 
 
 
@@ -49,9 +50,8 @@ in your console. */
 
   //Code Here
 
-
-
-
+var makeCall = callFriend()
+console.log(makeCall("435-215-9248"))
 
 
 
@@ -66,14 +66,21 @@ in your console. */
 /* Write a function called makeCounter that makes the following code work
 properly. */
 
-//Code Here
+function makeCounter() {
+     var counter = 1;
+     function counting() {
 
-//Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+       return counter++;
+       
+     }
+     return counting;
+   }
+// //Uncomment this once you make your function
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -96,17 +103,23 @@ function is responsible for decrementing the value by one. You will need to use
 the module pattern to achieve this. */
 
 function counterFactory(value) {
+  var counter = value
+  return{
+    inc: function(){
+       return ++counter
+                   },
 
-  // Code here.
+    dec:function(){
+       return --counter
+                  }
 
+       }
 
-  return {
-  }
+  // Code here. 
 }
-
-
 counter = counterFactory(10);
-
+counter.inc()
+counter.dec()
 
 
 
@@ -128,15 +141,17 @@ function motivation(firstname, lastname){
 
   var welcomeText = 'You\'re doing awesome, keep it up ';
 
-  // code message function here.
+  function message(){
+    return welcomeText + (firstname)+ " " + (lastname) + "."
+  }
 
 
-  //Uncommment this to return the value of your invoked message function
-  //return message();
+  // Uncommment this to return the value of your invoked message function
+  return message();
 
 }
 
-motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
+motivation('Billy', ' Bob'); // 'Your doing awesome keep it up Billy Bob
 
 
 
@@ -171,7 +186,9 @@ var module = (function() {
 	// outside our lexical scope
 
   return {
-    // Code here.
+    publicMethod: function(){
+    return privateMethod() 
+     }// Code here.
   };
 
 })();
@@ -200,15 +217,16 @@ then 3, etc). Run this code in your console to see what the output is. */
 // To make this code work you will need to create a new scope for every iteration.
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
+   newScope(i)}
+console.log(i)
+  function newScope(i) {
+        setTimeout(function() {
       console.log(i);
     }, i * 1000)
   }
-
-  function newScope(i) {
     console.log(i)
   }
-}
+
 timeOutCounter();
 
 
@@ -220,7 +238,11 @@ timeOutCounter();
 	#PROBLEM-08
 \******************************************************************************/
 
-var funcArray = [];
+var funcArray = [
+  function index0(){
+    return 0
+  }
+];
 
 /*
   Make the following code work
